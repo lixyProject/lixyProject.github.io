@@ -1,0 +1,232 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>设计模式六大原则 | 相信飞鱼</title><meta name="description" content="单一职责原则  一个方法尽可能做一件事情，一般来说不应该让一个方法承担多个职责。  单一职责原则的英文名称是Single Responsibility Principle，简称是SRP。单一职责原则的定义是：应该有且仅有一个原因引起类的变更。 SRP的原话解释是：There should never be more than one reason for a class to change.  单"><meta name="keywords" content="设计模式"><meta name="author" content="lixy"><meta name="copyright" content="lixy"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yoursite.com/2020/07/24/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="设计模式六大原则"><meta property="og:url" content="http://yoursite.com/2020/07/24/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99/"><meta property="og:site_name" content="相信飞鱼"><meta property="og:description" content="单一职责原则  一个方法尽可能做一件事情，一般来说不应该让一个方法承担多个职责。  单一职责原则的英文名称是Single Responsibility Principle，简称是SRP。单一职责原则的定义是：应该有且仅有一个原因引起类的变更。 SRP的原话解释是：There should never be more than one reason for a class to change.  单"><meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><meta property="article:published_time" content="2020-07-23T16:00:00.000Z"><meta property="article:modified_time" content="2020-07-24T10:08:52.497Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="next" title="my-first-blog" href="http://yoursite.com/2020/06/18/my-first-blog/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: false
+  }</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">3</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">1</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音樂</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 電影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">相信飞鱼</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音樂</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw fa fa-picture-o"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 電影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">设计模式六大原则</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-07-24 00:00:00"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2020-07-24</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-07-24 18:08:52"><i class="fas fa-history fa-fw"></i> 更新于 2020-07-24</span></time></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><p><strong>单一职责原则</strong></p>
+<ul>
+<li>一个方法尽可能做一件事情，一般来说不应该让一个方法承担多个职责。</li>
+</ul>
+<p>单一职责原则的英文名称是Single Responsibility Principle，简称是SRP。单一职责原则的定义是：应该有且仅有一个原因引起类的变更。</p>
+<p>SRP的原话解释是：There should never be more than one reason for a class to change.</p>
+<ul>
+<li>单一职责原则提出了一个编写程序的标准，用“职责”或“变化原因”来衡量接口或设计是否优良，但是“职责”跟“变化原因”都是不好度量的，要“因地制宜”。</li>
+<li>单一职责适用于接口、类，同时也适用于方法，也就是说，一个方法尽可能做一件事情，一般来说不应该让一个方法承担多个职责。</li>
+</ul>
+<p><strong>里氏替换原则</strong></p>
+<ul>
+<li>子类应该能替换掉它的父类。</li>
+</ul>
+<ul>
+<li><p>里氏替换原则为良好的继承定义了一个规范，一句简单的定义包含了4层含义。</p>
+<p>1、子类必须完全实现父类的方法</p>
+<p>2、子类可以有自己的个性。</p>
+<p>3、覆盖或实现父类的方法时输入参数可以被放大。</p>
+<p>4、覆写或实现父类的方法时输出结果可以被缩小。</p>
+</li>
+<li><p>即如果父类的一个方法的返回值是一个类型T，子类的相同方法（重载或覆写）的返回值为S，那么里氏替换原则就要求S必须小于等于T，也就是说，要么S和T是同一个类型，要么S是T的子类。</p>
+</li>
+<li><p>好像挺难理解的，查找了一些资料。著名技术作家Robert Martin在1996年为《C++ Reporter》写了一篇题为《The The Liskov Substitution Principle》的文章，专门介绍LSP。在Martin的文章中，他给了LSP一个解释：Functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it. 意思是：“使用指向基类的指针或引用的函数，必须能够在不知道具体派生类对象类型的情况下使用它们。”在2002年，Martin在他出版的《Agile Software Development Principles Patterns and Practices》一书中，又进一步简化为：Subtypes must be substitutable for their base types。子类必须能替换掉它们的父类。这样理解起来就比较顺利了。</p>
+</li>
+</ul>
+<p><strong>依赖倒置原则</strong></p>
+<ul>
+<li>细节依赖抽象，低层依赖高层。</li>
+</ul>
+<ul>
+<li><p>依赖倒置原则的原始定义是：High level modules should not depend upon low level modules.Both should depend upon abstractions.Abstractions should not depend upon details.Details should depend upon abstractions.</p>
+<p>包含了三层含义：</p>
+<p>1、高层模块不应该依赖低层模块，两者都应该依赖其抽象;</p>
+<p>2、抽象不应该依赖细节；</p>
+<p>3、细节应该依赖抽象。</p>
+</li>
+</ul>
+<ul>
+<li><p>这一原则在Java语言中的表现就是：</p>
+<p>1、模块间的依赖通过抽象发生，实现类之间不发生直接的依赖关系，其依赖关系是通过接口或抽象类产生的；</p>
+<p>2、接口或抽象类不依赖于实现类；</p>
+<p>3、实现类依赖接口或抽象类。</p>
+</li>
+</ul>
+<ul>
+<li>一般抽象是不变的，而具体是易变的。每个较高层次都为它所需要的服务声明一个抽象接口，较低的层次实现这些抽象接口，每个高层类都通过该抽象接口使用下一层的服务，接口属于高层,低层要实现高层的接口,因此现在是低层依赖于高层。是依赖关系倒置和接口所有权的倒置。在周围环境发生变化的时候，如果设计可以做到不怎么发生改变，那这样的设计就是好的。</li>
+</ul>
+<p><strong>接口隔离原则</strong></p>
+<ul>
+<li>应该尽量建立单一接口，不要建立臃肿的接口，接口应该尽量细化。</li>
+<li>接口隔离原则的原始定义是：Clients should not be forced to depend upon interfaces that they don’t use.客户端不应该依赖它不需要的接口。</li>
+<li>The dependency of one class to another one should depend on the smallest possible interface.类间的依赖关系应该建立在最小的接口上。</li>
+<li>这两个定义概括起来就是，应该尽量建立单一接口，不要建立臃肿的接口，接口应该尽量细化。</li>
+</ul>
+<p>接口分离的手段主要有以下两种：</p>
+<ol>
+<li><p>委托分离，通过增加一个新的类型来委托客户的请求，隔离客户和接口的直接依赖，但会增加系统开销。</p>
+</li>
+<li><p>多重继承分离，通过接口多继承来实现客户需求。</p>
+</li>
+</ol>
+<p><strong>迪米特法则</strong></p>
+<ul>
+<li>一个类应该对自己需要耦合或调用的类知道得最少。</li>
+<li>迪米特法则（Law of Demeter）又叫最少知道原则（Least Knowledge Principle），1987年秋天由美国Northeastern University的Ian Holland提出，被UML的创始者之一Booch等普及。后来，因为在经典著作《 The Pragmatic Programmer》中提出而广为人知。</li>
+</ul>
+<p><strong>迪米特法则还有一个英文解释是：Only talk to your immediate friends。</strong></p>
+<p>一个对象应该对其他对象有最少的了解。通俗地讲，一个类应该对自己需要耦合或调用的类知道得最少。一个类公开的public属性或方法越多，修改时涉及的面也就越大，变更引起的风险扩散也就越大。在设计时需要反复衡量，是否可以减少public方法和属性，是否可以修改为private、package-private、protected等访问权限，是否可以加上final关键字等。迪米特法则要求类尽量不要对外公布太多的public方法和非静态的public变量，尽量内敛，多使用private、package-private、protected等访问权限。</p>
+<p><strong>开闭原则</strong></p>
+<ul>
+<li>开闭原则要求尽量通过扩展软件实体的行为来实现变化，而不是通过修改已有的代码来完成变化。</li>
+</ul>
+<p><strong>开闭原则的定义：</strong></p>
+<p>Software entities like classes,modules and functios should be open for extemsion but closed for modifications.</p>
+<ul>
+<li>一个软件实体如类、模块和函数应该对扩展开放，对修改关闭。</li>
+<li>一个软件产品只要在生命期内，都会发生变化，既然变化是一个既定的事实，我们应该在设计时尽量适应这些变化，以提高项目的稳定性和灵活性。开闭原则要求尽量通过扩展软件实体的行为来实现变化，而不是通过修改已有的代码来完成变化。如何做到开闭原则：抽象、封装。</li>
+</ul>
+<p>**<br>**</p>
+<p><strong>三大类别</strong></p>
+<p>**<br>**</p>
+<p><strong>建造型设计模式</strong></p>
+<p>在软件工程中，创建型模式是处理对象创建的设计模式，试图根据实际情况使用合适的方式创建对象。基本的对象创建方式可能会导致设计上的问题，或增加设计的复杂度。创建型模式通过以某种方式控制对象的创建来解决问题。创建型模式由两个主导思想构成。一是将系统使用的具体类封装起来，二是隐藏这些具体类的实例创建和结合的方式。创建型模式又分为对象创建型模式和类创建型模式。对象创建型模式处理对象的创建，类创建型模式处理类的创建。详细地说，对象创建型模式把对象创建的一部分推迟到另一个对象中，而类创建型模式将它对象的创建推迟到子类中。</p>
+<p><strong><a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484503&idx=1&sn=ba6c5aaf54363f9ad07892ce9cb10d9e&chksm=fad4c9a9cda340bf8b138567a1fd409c1b1afbd886a886683bb074d2c92fdb29ee933d8c6c26&scene=21#wechat_redirect" target="_blank" rel="noopener">简单工厂模式</a> /<a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484507&idx=1&sn=aa1a663d12631a06888e2929a27700e7&chksm=fad4c9a5cda340b32b0ef169118a7dcf84408e48ae0f0b1460fa1c07284066b43e82366de166&scene=21#wechat_redirect" target="_blank" rel="noopener">工厂模式</a></strong></p>
+<p>让子类来决定要创建哪个对象。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484512&idx=1&sn=9301b916140d5ced891a4f5d3d9fbccb&chksm=fad4c99ecda34088ffddeb7f36d34d1406cd3851590ba59b29111188547ba02e97f013260ccd&scene=21#wechat_redirect" target="_blank" rel="noopener"><strong>抽象工厂模式</strong></a></p>
+<p>创建多个产品族中的产品对象。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484518&idx=1&sn=ee95f91cbdefe8188e6c6ab974d21b9d&chksm=fad4c998cda3408e73c0926bae301f5529e5e7c41c7b4c026edd91e17991774ec22ef28b3634&scene=21#wechat_redirect" target="_blank" rel="noopener"><strong>单例模式</strong></a></p>
+<p>确保某一个类只有一个实例，并且提供一个全局访问点。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484522&idx=1&sn=9bdac0c600f261b17add25d7ffb12245&chksm=fad4c994cda340820ea85924aa55dfcf16a16a64a7c73b2ebc6a9279070e34d35a4597ad7388&scene=21#wechat_redirect" target="_blank" rel="noopener"><strong>建造者模式</strong></a></p>
+<p>用来创建复杂的复合对象。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484531&idx=1&sn=f3016ed4243b0b83bf5fdf9d5ba1beb5&chksm=fad4c98dcda3409b89469ed733a84a8d069804841215aa61ae2a35c41139e6830751d98be642&scene=21#wechat_redirect" target="_blank" rel="noopener"><strong>原型模式</strong></a></p>
+<p>通过复制原型来创建新对象。</p>
+<p><strong>结构型设计模式</strong></p>
+<p>结构型模式涉及到如何组合类和对象以获得更大的结构。结构型模式采用继承机制来组合接口或实现。结构型对象模式不是对接口和实现进行组合，而是描述了如何对一些对象进行组合，从而实现新功能的一些方法。因为可以在运行时刻改变对象组合关系，所以对象组合方式具有更大的灵活性。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484537&idx=1&sn=a8f4a4666c6dd63e28dd5265e4d1d316&chksm=fad4c987cda34091d7547f6426f2cc36df3d165a77c277d6056ed3734bd170a051dabdd54bba&scene=21#wechat_redirect" target="_blank" rel="noopener"><strong>适配器模式</strong></a></p>
+<p>将原来不兼容的两个类融合在一起。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484543&idx=1&sn=5d83c4b8d0e32afaf910253be55d8c48&chksm=fad4c981cda3409762e5ca0f72eead3d313df30129bee22672e1544d502b999901b8a9f076c6&scene=21#wechat_redirect" target="_blank" rel="noopener"><strong>桥接模式</strong></a></p>
+<p>将两个能够独立变化的部分分离开来。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484591&idx=1&sn=f0e3ff92ad3c8483d1e17833b49d702a&chksm=fad4c951cda340475140c75b444a429a33624c01c6dd21e88facba0ba672d51ab6e42347549a&scene=21#wechat_redirect" target="_blank" rel="noopener"><strong>组合模式</strong></a></p>
+<p>将整体与局部（树形结构）进行递归组合，让客户端能够以一种的方式对其进行处理。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484592&idx=1&sn=42a14aef3707745f570488be2fe77326&chksm=fad4c94ecda34058648b394acca654520e97f080aa156fb281c26eaad6f910c55e67b3063364&scene=21#wechat_redirect" target="_blank" rel="noopener"><strong>装饰者模式</strong></a></p>
+<p>为对象添加新功能。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484599&idx=1&sn=60ebdb018684a169fcab1bb5f144db4b&chksm=fad4c949cda3405f71dfb9e7732c14e79fc24d201618187436acc4e82ff2bb79e3acba50f105&scene=21#wechat_redirect" target="_blank" rel="noopener"><strong>外观模式</strong></a></p>
+<p>对外提供一个统一的接口用来访问子系统。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484608&idx=1&sn=eaf0a24481f834bfe3bd130546d0ea21&chksm=fad4c93ecda340286c7eeb2d40e62062dfe0854339902e27b80cd347df8fe537a2165dd39198&scene=21#wechat_redirect" target="_blank" rel="noopener"><strong>享元模式</strong></a></p>
+<p>使用对象池来减少重复对象的创建。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484600&idx=1&sn=ad90edfe626da06f88ad200c2820623b&chksm=fad4c946cda340501352f4602719b633e9ef5ab5a36e7b47fd06fcd8d5f50c19578bcd5dfe26&scene=21#wechat_redirect" target="_blank" rel="noopener"><strong>代理模式</strong></a></p>
+<p>控制客户端对对象的访问。</p>
+<p><strong>行为型设计模式</strong></p>
+<p>行为型模式主要是用于描述类或者对象是怎样交互和怎样分配职责的。它涉及到算法和对象间的职责分配，不仅描述对象或者类的模式，还描述了他们之间的通信方式，它将你的注意力从控制流转移到了对象间的关系上来。行为型类模式采用继承机制在类间分派行为，而行为型对象模式使用对象复合而不是继承。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484607&idx=1&sn=57c6a31259603f1ed797b5292cbaa440&chksm=fad4c941cda340570969ea54d3a89e1dc4a7db92be801dc2903778b8a59701f27d5f918c1bfd&scene=21#wechat_redirect" target="_blank" rel="noopener"><strong>职责链模式</strong></a></p>
+<p>将事件沿着链去处理。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484646&idx=1&sn=bf62c97d706173850db3ca7114a58460&chksm=fad4c918cda3400eebcc71f53d836ab6a55532cca07147120d435841e2528d52c9e70c0bab1d&scene=21#wechat_redirect" target="_blank" rel="noopener"><strong>命令模式</strong></a></p>
+<p>将请求封装成命令，并记录下来，能够撤销与重做。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484659&idx=1&sn=98a593a004cb1b1d160ff9220456976a&chksm=fad4c90dcda3401b71872b17236dadf265b754bae7aac6d17d93689e8f5e6060922bff3f8ed8&scene=21#wechat_redirect" target="_blank" rel="noopener"><strong>解释器模式</strong></a></p>
+<p>定义语法，并对其进行解释。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484668&idx=1&sn=d102f7f895431aa6e47b525a39d88232&chksm=fad4c902cda34014cf474d791e398ba4bc83c663350d28fa34e15fe144f38e00cb617711243e&scene=21#wechat_redirect" target="_blank" rel="noopener"><strong>迭代器模式</strong></a></p>
+<p>提供一种方法顺序访问一个聚合对象中的各个元素。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484658&idx=1&sn=38a84f8e2cd75a00b52e2442c17994fc&chksm=fad4c90ccda3401a73b7ba2b1508b16afb181e4ab1569f448d1f1d50da26a72e8169a8f24bc4&scene=21#wechat_redirect" target="_blank" rel="noopener"><strong>中介者模式</strong></a></p>
+<p>将网状结构转变为星型结构，所有行为都通过中介。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484716&idx=1&sn=b53a4ff07138f39d464b824110ae09fd&chksm=fad4c8d2cda341c401f7101843c513b71c75f1f6cbb012ff4ee769f313be5c8e521e3ea77b72&scene=21#wechat_redirect" target="_blank" rel="noopener"><strong>备忘录模式</strong></a></p>
+<p>保存对象的状态，在需要时进行恢复。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484717&idx=1&sn=b47ea30badba1e7ab4395aee8246e114&chksm=fad4c8d3cda341c5a605dba6d52d76ae4e86e7584df98333092a1e388fad0f8047014a6ec0fe&scene=21#wechat_redirect" target="_blank" rel="noopener"><strong>观察者模式</strong></a></p>
+<p>状态发生改变时通知观察者，一对多的关系。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484741&idx=1&sn=3344de897fa1785e9039b3291063c6ad&chksm=fad4c8bbcda341adea94893eddfcf3c8e9ff35f8d583e0d965e4bda486f30f616bab7e738482&scene=21#wechat_redirect" target="_blank" rel="noopener"><strong>状态模式</strong></a></p>
+<p>根据不同的状态做出不同的行为。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484743&idx=1&sn=4a379e27a80f5cb5485bd77cdf09eea7&chksm=fad4c8b9cda341af933b6f2a2254a25459cdb791a6d7f681f19c66c64e7c3338f29b0fce17e4&scene=21#wechat_redirect" target="_blank" rel="noopener"><strong>策略模式</strong></a></p>
+<p>封装不同的算法，算法之间能互相替换。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484754&idx=1&sn=287b437daa2696cc7334db1b9e0cdadc&chksm=fad4c8accda341baac7388d62d9c6b6493bce4c0179fe22fd79e9de564e21debd91258f27e36&scene=21#wechat_redirect" target="_blank" rel="noopener"><strong>模板方法模式</strong></a></p>
+<p>定义一套流程模板，根据需要实现模板中的操作。</p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzUzODU4MjE2MQ==&mid=2247484755&idx=1&sn=7c0adc07ec7e7bf936cab5b7b8f79ecf&chksm=fad4c8adcda341bb520c2c9190c6d8d62e24ce1526be99982791a3867582623478489458126e&scene=21#wechat_redirect" target="_blank" rel="noopener"><strong>访问者模式</strong></a></p>
+<p>基于稳定数据结构，定义新的操作行为。</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">lixy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yoursite.com/2020/07/24/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99/">http://yoursite.com/2020/07/24/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yoursite.com" target="_blank">相信飞鱼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/06/18/my-first-blog/"><img class="next-cover" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">my-first-blog</div></div></a></div></nav></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By lixy</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><button id="readmode" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" title="缩小字体"><i class="fas fa-minus"></i></button><button class="translate_chn_to_cht" id="translateLink" title="简繁转换">繁</button><button id="darkmode" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script></body></html>
